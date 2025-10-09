@@ -1,4 +1,4 @@
-Word,Meaning,Part of Speech,Examples Sentence, Synonym,Topic,To Indonesian
+Word,Meaning,Part_of_Speech,Examples_Sentence, Synonym,Topic,To_Indonesian
 Mitigate,"Make less severe, serious, or painful",Verb,"Governments should act to mitigate climate change.
 He wants to mitigate misery in the world. ","reduce, lessen, alleviate, diminish",Environment,Mengurangi
 Hinder,"Create difficulties for (something or someone), resulting in delay or obstruction",Verb,"Poor infrastructure hinder economy growth.
@@ -6,7 +6,7 @@ Various family stalemates were hindering communication","block, delay, obstruct,
 Crucial,"Decisive or critical, especially in the success or failure of something (very important)",Adjective,"Negotiations were at crucial stage.
 this game is crucial to our survival.
 Vocabulary is crucial in IELTS preparation","vital, essential, critical, key",Education,Penting
-Courage,The ability to do something that frightens one.,Noun,"She called on all her courage to face the ordeal.
+Courage,The ability to do something thatP frightens one.,Noun,"She called on all her courage to face the ordeal.
 He fought his illness with great courage","bravery, nerve, audacity",Health,Keberanian
 Beg,"Ask (someone) earnestly or humbly for something. 
 Ask for something typically food or money, as charity or a gift",Verb,"She bagged me to say nothing to her father.
