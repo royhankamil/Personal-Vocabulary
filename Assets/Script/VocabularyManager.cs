@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Jobs;
 
 public class VocabularyManager : MonoBehaviour
 {
@@ -17,7 +18,8 @@ public class VocabularyManager : MonoBehaviour
         public string Topic;
         public string To_Indonesian;
     }
-
+    public GameObject itemPrefab;
+    public Transform contentPanel;
     public List<WordData> VocabularyList = new List<WordData>();
     private string filepath;
 
@@ -42,6 +44,19 @@ public class VocabularyManager : MonoBehaviour
             Debug.Log("Vocabulary list is empty.");
         }
         Debug.Log(filepath);
+    }
+
+    public void ShowVocabularyList()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            WordData word = VocabularyList[i];
+            Debug.Log($"{i + 1}. {word.Word} - {word.Meaning} (Example: {word.Examples_Sentence})");
+
+            GameObject item = Instantiate(itemPrefab, contentPanel);
+            SetItemComponent itemComp = item.GetComponent<SetItemComponent>();
+            itemComp.SetItem(word.Word, word.Meaning, word.Examples_Sentence);
+        }
     }
 
     public void LoadCSV()
