@@ -3,21 +3,21 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.Jobs;
 
+[System.Serializable]
+public class WordData
+{
+    public string Word;
+    public string Meaning;
+    public string Part_of_Speech;
+    public string Examples_Sentence;
+    public string Synonym;
+    public string Topic;
+    public string To_Indonesian;
+}
 public class VocabularyManager : MonoBehaviour
 {
 
     // Word,Meaning,Part_of_Speech,Examples_Sentence, Synonym, Topic, To_Indonesian
-    [System.Serializable]
-    public class WordData
-    {
-        public string Word;
-        public string Meaning;
-        public string Part_of_Speech;
-        public string Examples_Sentence;
-        public string Synonym;
-        public string Topic;
-        public string To_Indonesian;
-    }
     public GameObject itemPrefab;
     public Transform contentPanel;
     public List<WordData> VocabularyList = new List<WordData>();
@@ -29,7 +29,22 @@ public class VocabularyManager : MonoBehaviour
 
         LoadCSV();
 
-        ShowSample();   
+        ShowSample();
+    }
+
+    public WordData GetRandomWord()
+    {
+        if (VocabularyList.Count == 0)
+        {
+            Debug.Log("Vocabulary list is empty.");
+            return null;
+        }
+
+        int randomIndex = Random.Range(0, VocabularyList.Count);
+        var randomWord = VocabularyList[randomIndex];
+        Debug.Log($"Random Word: {randomWord.Word}, Meaning: {randomWord.Meaning}, Example: {randomWord.Examples_Sentence}");
+
+        return randomWord;
     }
 
     void ShowSample()
