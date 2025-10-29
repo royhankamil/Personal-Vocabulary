@@ -47,6 +47,17 @@ public class VocabularyManager : MonoBehaviour
         return randomWord;
     }
 
+    public WordData GetVocabulary(int index)
+    {
+        if (index < 0 || index >= VocabularyList.Count)
+        {
+            Debug.Log("Index out of range.");
+            return null;
+        }
+
+        return VocabularyList[index];
+    }
+
     void ShowSample()
     {
         if (VocabularyList.Count > 0)
