@@ -20,7 +20,7 @@ public class PracticeQuestionBuilder : MonoBehaviour
 
     void Start()
     {
-
+        StartQuestioning();
     }
 
     public void StartQuestioning()
@@ -117,6 +117,13 @@ public class PracticeQuestionBuilder : MonoBehaviour
 
     public void CheckAnswer(int answerIndex)
     {
-        if (answer == )
+        if (randomAnswerPosition == answerIndex)
+        {
+            Debug.Log("Correct Answer!");
+        }
+        else
+        {
+            Debug.Log("Wrong Answer!");
+        }
     }
 }

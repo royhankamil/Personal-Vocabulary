@@ -23,7 +23,7 @@ public class VocabularyManager : MonoBehaviour
     public List<WordData> VocabularyList = new List<WordData>();
     private string filepath;
 
-    void Start()
+    void Awake()
     {
         filepath = Path.Combine(Application.streamingAssetsPath, "PERSONAL_VOCABULARY_SYSTEM.csv");
 
