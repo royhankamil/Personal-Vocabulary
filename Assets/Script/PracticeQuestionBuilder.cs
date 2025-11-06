@@ -52,12 +52,12 @@ public class PracticeQuestionBuilder : MonoBehaviour
 
         else
         {
-            string randomAnswerPosition = GetRandomWrongAnswer(questionType);
-            while (randomAnswerPosition == answerOptionB.text)
-            {
-                randomAnswerPosition = GetRandomWrongAnswer(questionType);
-            }
-            answerOptionB.text = GetRandomWrongAnswer(questionType);
+            // string randomAnswerPosition = GetRandomWrongAnswer(questionType);
+            // while (randomAnswerPosition == answerOptionB.text)
+            // {
+            //     randomAnswerPosition = GetRandomWrongAnswer(questionType);
+            // }
+            answerOptionA.text = GetRandomWrongAnswer(questionType);
         }
 
         if (randomAnswerPosition == 1)
@@ -68,11 +68,11 @@ public class PracticeQuestionBuilder : MonoBehaviour
         
         else
         {
-            string randomAnswerPosition = GetRandomWrongAnswer(questionType);
-            while (randomAnswerPosition == answerOptionB.text)
-            {
-                randomAnswerPosition = GetRandomWrongAnswer(questionType);
-            }
+            // string randomAnswerPosition = GetRandomWrongAnswer(questionType);
+            // while (randomAnswerPosition == answerOptionB.text)
+            // {
+            //     randomAnswerPosition = GetRandomWrongAnswer(questionType);
+            // }
             answerOptionB.text = GetRandomWrongAnswer(questionType);
         }
 
