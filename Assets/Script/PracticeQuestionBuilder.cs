@@ -2,20 +2,29 @@ using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 
+public enum AnswerOption
+{
+    A = 0,
+    B,
+    C,
+    D
+}
+
 public class PracticeQuestionBuilder : MonoBehaviour
 {
     [SerializeField] private VocabularyManager vocabularyManager;
     [SerializeField]
     private TextMeshProUGUI questionText, answerOptionA,
                 answerOptionB, answerOptionC, answerOptionD;
-    int randomAnswerPosition;
-                
+    AnswerOption randomAnswerPosition;
+
     private enum TypeOfQuestion
     {
         Meaning,
         Synonym,
         ExampleSentence
     }
+
 
 
     void Start()
@@ -25,9 +34,9 @@ public class PracticeQuestionBuilder : MonoBehaviour
 
     public void StartQuestioning()
     {
-        int wordDataIndex = Random.Range(0, vocabularyManager.VocabularyList.Count);
+        int wordDataIndex = Random.Range(0, vocabularyManager.VocabularyList.Count - 1);
         int randomTypeOfQuestion = Random.Range(0, 3);
-        randomAnswerPosition = Random.Range(0, 4);
+        randomAnswerPosition = (AnswerOption)Random.Range(0, 4);
         TypeOfQuestion questionType = (TypeOfQuestion)randomTypeOfQuestion;
         WordData wordData = vocabularyManager.GetVocabulary(wordDataIndex);
         switch (questionType)
@@ -43,11 +52,16 @@ public class PracticeQuestionBuilder : MonoBehaviour
                 break;
         }
 
-        if (randomAnswerPosition == 0)
+        if (randomAnswerPosition == AnswerOption.A)
         {
-            answerOptionA.text = wordData.Meaning;
+            if (questionType == TypeOfQuestion.Meaning)
+                answerOptionA.text = MinimizeString(wordData.Meaning);
+            else if (questionType == TypeOfQuestion.Synonym)
+                answerOptionA.text = wordData.Synonym;
+            else // ExampleSentence
+                answerOptionA.text = wordData.Examples_Sentence;
             // Fill other options with random meanings
-            
+
         }
 
         else
@@ -60,12 +74,17 @@ public class PracticeQuestionBuilder : MonoBehaviour
             answerOptionA.text = GetRandomWrongAnswer(questionType);
         }
 
-        if (randomAnswerPosition == 1)
+        if (randomAnswerPosition == AnswerOption.B)
         {
-            answerOptionB.text = wordData.Meaning;
+            if (questionType == TypeOfQuestion.Meaning)
+                answerOptionB.text = MinimizeString(wordData.Meaning);
+            else if (questionType == TypeOfQuestion.Synonym)
+                answerOptionB.text = wordData.Synonym;
+            else // ExampleSentence
+                answerOptionB.text = wordData.Examples_Sentence;
             // Fill other options with random meanings
         }
-        
+
         else
         {
             // string randomAnswerPosition = GetRandomWrongAnswer(questionType);
@@ -76,9 +95,14 @@ public class PracticeQuestionBuilder : MonoBehaviour
             answerOptionB.text = GetRandomWrongAnswer(questionType);
         }
 
-        if (randomAnswerPosition == 2)
+        if (randomAnswerPosition == AnswerOption.C)
         {
-            answerOptionC.text = wordData.Meaning;
+            if (questionType == TypeOfQuestion.Meaning)
+                answerOptionC.text = MinimizeString(wordData.Meaning);
+            else if (questionType == TypeOfQuestion.Synonym)
+                answerOptionC.text = wordData.Synonym;
+            else // ExampleSentence
+                answerOptionC.text = wordData.Examples_Sentence;
             // Fill other options with random meanings
         }
 
@@ -87,9 +111,14 @@ public class PracticeQuestionBuilder : MonoBehaviour
             answerOptionC.text = GetRandomWrongAnswer(questionType);
         }
 
-        if (randomAnswerPosition == 3)
+        if (randomAnswerPosition == AnswerOption.D)
         {
-            answerOptionD.text = wordData.Meaning;
+            if (questionType == TypeOfQuestion.Meaning)
+                answerOptionD.text = MinimizeString(wordData.Meaning);
+            else if (questionType == TypeOfQuestion.Synonym)
+                answerOptionD.text = wordData.Synonym;
+            else // ExampleSentence
+                answerOptionD.text = wordData.Examples_Sentence;
             // Fill other options with random meanings
         }
 
@@ -98,26 +127,34 @@ public class PracticeQuestionBuilder : MonoBehaviour
             answerOptionD.text = GetRandomWrongAnswer(questionType);
         }
     }
-    
+
     string GetRandomWrongAnswer(TypeOfQuestion questionType)
     {
-        int randomIndex = Random.Range(0, vocabularyManager.VocabularyList.Count);
+        int randomIndex = Random.Range(0, vocabularyManager.VocabularyList.Count - 1);
         if (questionType == TypeOfQuestion.Meaning)
-            return vocabularyManager.VocabularyList[randomIndex].Meaning;
+            return MinimizeString(vocabularyManager.VocabularyList[randomIndex].Meaning);
         else if (questionType == TypeOfQuestion.Synonym)
             return vocabularyManager.VocabularyList[randomIndex].Synonym; // Assuming Synonyms is a property in WordData
         else // ExampleSentence
             return vocabularyManager.VocabularyList[randomIndex].Examples_Sentence;
     }
 
+    // to split the string into smaller parts by sentences
+    string MinimizeString(string input)
+    {
+        string[] splitInput = input.Split('.');
+        int random = Random.Range(0, splitInput.Length - 1);
+        return splitInput[random];
+    }
+
     void Update()
     {
-        
+
     }
 
     public void CheckAnswer(int answerIndex)
     {
-        if (randomAnswerPosition == answerIndex)
+        if (randomAnswerPosition == (AnswerOption) answerIndex)
         {
             Debug.Log("Correct Answer!");
         }
