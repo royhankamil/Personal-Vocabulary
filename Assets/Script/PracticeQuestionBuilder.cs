@@ -143,7 +143,7 @@ public class PracticeQuestionBuilder : MonoBehaviour
     string MinimizeString(string input)
     {
         string[] splitInput = input.Split('.');
-        int random = Random.Range(0, splitInput.Length - 1);
+        int random = Random.Range(0, splitInput.Length - 2);
         return splitInput[random];
     }
 
